@@ -117,11 +117,12 @@
                 <div class="input-group">
                     {{-- <button type="button" onclick="readExcel()" class="btn btn-outline-primary">Cargar Excel</button> --}}
                     <div class="custom-file">
-                        <input type="file" onchange="uploadExcel(event)" id="uploadExcelInp" accept=".xls,.xlsx"/>
+                        <input type="file" onchange="uploadExcel(event)"  onclick="this.value=null;" id="uploadExcelInp" accept=".xls,.xlsx"/>
                         <label class="custom-file-label button-xlsx" for="uploadExcelInp">Elegir archivo</label>
                     </div>
                 </div>
             </div>
+                <button id="delete_excel_table" type="button" onclick="deleteExcel()" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
         </div>
         
     </div>

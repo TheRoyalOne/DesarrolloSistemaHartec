@@ -539,10 +539,12 @@ function getGeocode() {
 
 /** Subir Excel */
 function uploadExcel(event) {
+    $('#load-xls').show();
+    console.log("Subida de archivo")
     selectedFile = event.target.files[0];
+    // alert("Se esta subiendo un archivo")
     readExcel();
 }
-
 function readExcel() {
     if(selectedFile) {
         var fileReader = new FileReader();
@@ -557,6 +559,7 @@ function readExcel() {
                 let rowObject = XLSX.utils.sheet_to_row_object_array(
                     workbook.Sheets[sheet]
                 );
+                // console.log(rowObject)
                 //let jsonObject = JSON.stringify(rowObject);
                 writeExcel(rowObject);
                 // console.log(workbook.Sheets[sheet]);
@@ -565,12 +568,13 @@ function readExcel() {
                 // console.log("__________________________________");
             });
         };
-
         fileReader.readAsBinaryString(selectedFile);
     }
 }
 
 function writeExcel(jsonObject) {
+    console.log(jsonObject)
+    console.log(window.all_species)
     //$('#table-2').bootstrapTable("destroy");
     let id = -1;
     for(var i = 0; i < jsonObject.length; i++) {
@@ -633,6 +637,22 @@ function writeExcel(jsonObject) {
 }
 
 
+function deleteExcel(){
+    // alert("Se ocultara la tabla");
+    $('#load-xls').hide();
+    window.excel_update = [];
+    let pos = -1;
+    window.excel.forEach(function(r){
+        console.log(row.id);
+        if(row.id != r.id) {
+            r.id = pos--;
+            window.excel_update.push(r);
+        }
+    });
+    window.excel = window.excel_update;
+    $('#table-2').bootstrapTable('load', window.excel);
+    console.log(window.excel);
+}
 function saveExcel() {
     //document.getElementById('load-xls').setAttribute("hidden", true);
     $('#table-2').empty();
