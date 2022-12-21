@@ -561,7 +561,9 @@ function readExcel() {
                 );
                 // console.log(rowObject)
                 //let jsonObject = JSON.stringify(rowObject);
-                writeExcel(rowObject);
+                if(sheet!='Validaciones'){
+                    writeExcel(rowObject);
+                    }
                 // console.log(workbook.Sheets[sheet]);
                 // console.log(workbook.Sheets);
                 // console.log(sheet);
@@ -613,8 +615,10 @@ function writeExcel(jsonObject) {
         //     }
         // });
         window.all_species.forEach(function (especie) {
+            console.log(especie.name)
             if(especie.name.toUpperCase() == specie.toUpperCase()) {
                 valid = true;
+                console.log(especie.name)
                 jsonObject[i].id_specie = especie.id;
             }
         });
