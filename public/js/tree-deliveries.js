@@ -561,7 +561,7 @@ function readExcel() {
                 );
                 // console.log(rowObject)
                 //let jsonObject = JSON.stringify(rowObject);
-                if(sheet!='Validaciones'){
+                if(sheet!=='Validaciones'){
                     writeExcel(rowObject);
                     }
                 // console.log(workbook.Sheets[sheet]);
@@ -609,14 +609,16 @@ function writeExcel(jsonObject) {
 
         //buscar si el nombre de la especie se encuentra en la lista
         // window.species.forEach(function (especie) {
-        //     if(especie.species_name.toUpperCase() == specie.toUpperCase()) {
-        //         valid = true;
-        //         jsonObject[i].id_specie = especie.species_id;
-        //     }
+            // console.log(especie.species_name)
+            // if(especie.species_name.toUpperCase() == specie.toUpperCase()) {
+                // valid = true;
+                // jsonObject[i].id_specie = especie.species_id;
+            // }
         // });
         window.all_species.forEach(function (especie) {
-            console.log(especie.name)
-            if(especie.name.toUpperCase() == specie.toUpperCase()) {
+            console.log('Especie e la BD: ',especie.name.toUpperCase())
+            console.log('Especie del excel: ',specie.toUpperCase())
+            if(especie.name.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() == specie.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim()) {
                 valid = true;
                 console.log(especie.name)
                 jsonObject[i].id_specie = especie.id;
