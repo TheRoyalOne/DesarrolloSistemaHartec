@@ -19,7 +19,7 @@ function initializeTable() {
 
 function loadEvents() {
     $.ajax({
-        url: '/Desarrollo/public/admin/workshop-events/',
+        url: '/public/admin/workshop-events/',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -54,7 +54,7 @@ var editColumnEvent = {
     'click .btn-edit': function(e, value, row, index)
     {
         // var route = baseURL + '/Getinfo/'+row.id;
-        var route = `/Desarrollo/public/admin/workshop-events/${row.id}`;
+        var route = `/public/admin/workshop-events/${row.id}`;
         updateid = row.id;
         $.ajax({
             url: route,
@@ -107,7 +107,7 @@ var deleteColumnEvent = {
         }).then(resp => {
             if (resp.value) {
                 $.ajax({
-                    url: `/Desarrollo/public/admin/workshop-events/${row.id}`,
+                    url: `/public/admin/workshop-events/${row.id}`,
                     type: 'delete',
                     dataType: 'json',
                     success: function(result){
@@ -219,9 +219,9 @@ function saveWorkshop() {
 
     if(id) {
         data['id'] = id;
-        sendUpsertEventRequest(`/Desarrollo/public/admin/workshop-events/${id}`, 'put', data);
+        sendUpsertEventRequest(`/public/admin/workshop-events/${id}`, 'put', data);
     } else {
-        sendUpsertEventRequest('/Desarrollo/public/admin/workshop-events', 'post', data);
+        sendUpsertEventRequest('/public/admin/workshop-events', 'post', data);
     }
 }
 
@@ -252,9 +252,9 @@ function saveAdoption() {
 
     if(id) {
         data['id'] = id;
-        sendUpsertEventRequest(`/Desarrollo/public/admin/workshop-events/${id}`, 'put', data);
+        sendUpsertEventRequest(`/public/admin/workshop-events/${id}`, 'put', data);
     } else {
-        sendUpsertEventRequest('/Desarrollo/public/admin/workshop-events', 'post', data);
+        sendUpsertEventRequest('/public/admin/workshop-events', 'post', data);
     }
 }
 
@@ -285,9 +285,9 @@ function savereReforestation(){
 
     if(id) {
         data['id'] = id;
-        sendUpsertEventRequest(`/Desarrollo/public/admin/workshop-events/${id}`, 'put', data);
+        sendUpsertEventRequest(`/public/admin/workshop-events/${id}`, 'put', data);
     } else {
-        sendUpsertEventRequest('/Desarrollo/public/admin/workshop-events', 'post', data);
+        sendUpsertEventRequest('/public/admin/workshop-events', 'post', data);
     }
 }
 

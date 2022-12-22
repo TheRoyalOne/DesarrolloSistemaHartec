@@ -19,7 +19,7 @@ function initializeTable() {
 
 function loadTreeLeavings() {
     $.ajax({
-        url: '/Desarrollo/public/admin/tree-leavings',
+        url: '/public/admin/tree-leavings',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -54,7 +54,7 @@ function deleteColumnFormatter(value, row, index, field) {
 var editColumnEvent = {
     'click .btn-edit': function(e, value, row, index)
     {
-        var route = `/Desarrollo/public/admin/tree-leavings/${row.id}`;
+        var route = `/public/admin/tree-leavings/${row.id}`;
         cleanSpeciesTable();
 
         $.ajax({
@@ -91,7 +91,7 @@ var deleteColumnEvent = {
         }).then(resp => {
             if (resp.value) {
                 $.ajax({
-                    url: `/Desarrollo/public/admin/tree-leavings/${row.id}`,
+                    url: `/public/admin/tree-leavings/${row.id}`,
                     type: 'delete',
                     dataType: 'json',
                     success: function(result) {
@@ -188,9 +188,9 @@ function saveTreeLeaving() {
 
     if(id) {
         data['id'] = id;
-        sendUpsertTreeLeavingRequest(`/Desarrollo/public/admin/tree-leavings/${id}`, 'put', data);
+        sendUpsertTreeLeavingRequest(`/public/admin/tree-leavings/${id}`, 'put', data);
     } else {
-        sendUpsertTreeLeavingRequest('/Desarrollo/public/admin/tree-leavings', 'post', data);
+        sendUpsertTreeLeavingRequest('/public/admin/tree-leavings', 'post', data);
     }
 }
 
@@ -233,7 +233,7 @@ function fetchAdoptionSpecies() {
         return;
     }
 
-    var route = `/Desarrollo/public/admin/adoptions/${select_adoption_id}`;
+    var route = `/public/admin/adoptions/${select_adoption_id}`;
     
     cleanSpeciesTable();
     document.getElementById('select_species_id').value = '';
