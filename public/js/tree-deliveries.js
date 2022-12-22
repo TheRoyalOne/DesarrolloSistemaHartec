@@ -19,7 +19,7 @@ function initializeTable() {
 
 function loadTreeDeliveries() {
     $.ajax({
-        url: '/public/admin/tree-deliveries',
+        url: '/Desarrollo/public/admin/tree-deliveries',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -41,11 +41,13 @@ function loadTreeDeliveries() {
 
 
 function loadTreeDeliveriesForm() {
-    window.id = window.location.pathname.split('/')[4];
+    var temporaryURL=window.location.pathname
+    window.id = temporaryURL.substring(temporaryURL.lastIndexOf('/') + 1);
+    // console.log(window.id)
     // alert(window.id)
     $.ajax({
-        url: '/public/admin/tree-deliveries/' + window.id,
-        // url: '/public/admin/tree-deliveries',
+        url: '/Desarrollo/public/admin/tree-deliveries/' + window.id,
+        // url: '/Desarrollo/public/admin/tree-deliveries',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -77,7 +79,7 @@ function loadTreeDeliveriesForm() {
 
 function loadAllSpecies(){
     $.ajax({
-        url: '/public/admin/species/',
+        url: '/Desarrollo/public/admin/species/',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -101,7 +103,7 @@ function loadAllSpecies(){
 
 function editColumnFormatter(value, row, index, field) {
     return [
-        `<a href="/public/admin/tree-deliveries/form/${row.id}" class="btn btn-primary btn-edit"><i class="fa fa-eye"></i></a>`
+        `<a href="/Desarrollo/public/admin/tree-deliveries/form/${row.id}" class="btn btn-primary btn-edit"><i class="fa fa-eye"></i></a>`
         // '<button class="btn btn-warning btn-edit" ><i class="fa fa-pencil"></i> </button>'
     ].join('');
 }
@@ -160,7 +162,7 @@ var deleteColumnEvent = {
 var editRegisterEvent = {
     'click .btn-edit': function(e, value, row, index) {
         $.ajax({
-            url: `/public/admin/tree-deliveries/${window.id}`,
+            url: `/Desarrollo/public/admin/tree-deliveries/${window.id}`,
             type: 'get',
             dataType: 'json',
             success: function(result) {
@@ -194,9 +196,9 @@ var deleteRegisterEvent = {
             showCancelButton: true
         }).then(resp => {
             if (resp.value) {
-                console.log("Borrar: ", `/public/admin/tree-deliveries/${window.id}.${row.id}`);
+                console.log("Borrar: ", `/Desarrollo/public/admin/tree-deliveries/${window.id}.${row.id}`);
                 $.ajax({
-                    url: `/public/admin/tree-deliveries/${window.id}.${row.id}`,
+                    url: `/Desarrollo/public/admin/tree-deliveries/${window.id}.${row.id}`,
                     type: 'get',
                     dataType: 'json',
                     success: function(result) {
@@ -387,7 +389,7 @@ function saveTreeDelevery() {
     let id = $('#id').val();
     if(isNumber(id) && id >= 0) {
         console.log("base de datos: ");
-        sendUpsertTreeDeliveryRequest(`/public/admin/tree-deliveries/${id_adoption}`, 'put', data);
+        sendUpsertTreeDeliveryRequest(`/Desarrollo/public/admin/tree-deliveries/${id_adoption}`, 'put', data);
     } else if(isNumber(id) && id < 0) {
         //modificar el excel
         data.id = Number(id);
@@ -398,7 +400,7 @@ function saveTreeDelevery() {
         cleanTreeDeliveryForm();
     } else {
         console.log("nuevo: ");
-        sendUpsertTreeDeliveryRequest(`/public/admin/tree-deliveries/${id_adoption}`, 'put', data);
+        sendUpsertTreeDeliveryRequest(`/Desarrollo/public/admin/tree-deliveries/${id_adoption}`, 'put', data);
     }
 }
 
@@ -668,7 +670,7 @@ function saveExcel() {
     window.excel.forEach(function(row){
         if(!row.error) {
             delete row.id;
-            sendUpsertTreeDeliveryRequest(`/public/admin/tree-deliveries/${window.id}`, 'put', row, true);
+            sendUpsertTreeDeliveryRequest(`/Desarrollo/public/admin/tree-deliveries/${window.id}`, 'put', row, true);
         } else {
             row.id = pos--;
             window.excel_error.push(row);
