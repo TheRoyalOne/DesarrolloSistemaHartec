@@ -19,7 +19,7 @@ function initializeTable() {
 
 function loadSpecies() {
     $.ajax({
-        url: '/public/admin/species',
+        url: '/admin/species',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -59,7 +59,7 @@ function deleteColumnFormatter(value, row, index, field) {
 var editColumnEvent = {
     'click .btn-edit': function(e, value, row, index)
     {
-        var route = `/public/admin/species/${row.id}`;
+        var route = `/admin/species/${row.id}`;
 
         $.ajax({
             url: route,
@@ -95,7 +95,7 @@ var deleteColumnEvent = {
         }).then(resp => {
             if (resp.value) {
                 $.ajax({
-                    url: `/public/admin/species/${row.id}`,
+                    url: `/admin/species/${row.id}`,
                     type: 'delete',
                     dataType: 'json',
                     success: function(result) {
@@ -174,9 +174,9 @@ $('#form').on('submit',(function(e) {
 
     if(id) {
         // data.append('id', id);
-        sendUpsertSpeciesRequest(`/public/admin/species/${id}?_method=PUT`, 'post', data);
+        sendUpsertSpeciesRequest(`/admin/species/${id}?_method=PUT`, 'post', data);
     } else {
-        sendUpsertSpeciesRequest('/public/admin/species', 'post', data);
+        sendUpsertSpeciesRequest('/admin/species', 'post', data);
     }
 }));
 

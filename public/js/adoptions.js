@@ -19,7 +19,7 @@ function initializeTable() {
 
 function loadAdoptions() {
     $.ajax({
-        url: '/public/admin/adoptions',
+        url: '/admin/adoptions',
         type: 'get',
         dataType: 'json',
         success: function(result) {
@@ -53,7 +53,7 @@ function deleteColumnFormatter(value, row, index, field) {
 var editColumnEvent = {
     'click .btn-edit': function(e, value, row, index)
     {
-        var route = `/public/admin/adoptions/${row.id}`;
+        var route = `/admin/adoptions/${row.id}`;
         cleanSpeciesTable();
 
         $.ajax({
@@ -90,7 +90,7 @@ var deleteColumnEvent = {
         }).then(resp => {
             if (resp.value) {
                 $.ajax({
-                    url: `/public/admin/adoptions/${row.id}`,
+                    url: `/admin/adoptions/${row.id}`,
                     type: 'delete',
                     dataType: 'json',
                     success: function(result) {
@@ -201,9 +201,9 @@ function saveAdoption() {
 
     if(id) {
         data['id'] = id;
-        sendUpsertAdoptionRequest(`/public/admin/adoptions/${id}`, 'put', data);
+        sendUpsertAdoptionRequest(`/admin/adoptions/${id}`, 'put', data);
     } else {
-        sendUpsertAdoptionRequest('/public/admin/adoptions', 'post', data);
+        sendUpsertAdoptionRequest('/admin/adoptions', 'post', data);
     }
 }
 
