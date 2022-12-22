@@ -41,7 +41,7 @@ function loadTreeDeliveries() {
 
 
 function loadTreeDeliveriesForm() {
-    window.id = window.location.pathname.split('/')[6];
+    window.id = window.location.pathname.split('/')[4];
     // alert(window.id)
     $.ajax({
         url: '/public/admin/tree-deliveries/' + window.id,
